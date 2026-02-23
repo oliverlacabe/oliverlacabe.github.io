@@ -1,10 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oliver Lacabe — Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    yo
+    <div class="stars" aria-hidden="true"></div>
+    <div class="shooting-stars" aria-hidden="true">
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+    </div>
+    <div class="hero">
+      <header class="hero-text">
+        <h1>OLIVER LACABE</h1>
+        <p class="tagline">CODE / BUILD / SHIP<span class="cursor">_</span></p>
+        <a href="mailto:you@example.com" class="cta">Contact</a>
+      </header>
+      <div class="pixel-scene" aria-hidden="true">
+        <div class="scene-row">
+        <div class="neon-sign">
+          <div class="neon-screen">
+            <div class="neon-text-row">
+              <span class="neon-text" id="neon-text"></span><span class="neon-cursor">|</span>
+            </div>
+          </div>
+        </div>
+        <div class="building">
+          <div class="roof"></div>
+          <div class="sign">DEV</div>
+          <div class="window">
+            <div class="monitor">
+              <div class="screen">
+                <span class="code">const ship = () => {}</span>
+              </div>
+            </div>
+          </div>
+          <div class="door">
+            <span class="door-sign">OPEN</span>
+          </div>
+        </div>
+        <div class="lamppost">
+          <div class="lamp-top"></div>
+          <div class="lamp-pole"></div>
+          <div class="menu-scroll">
+            <span>— CODE</span>
+            <span>— BUILD</span>
+            <span>— SHIP</span>
+          </div>
+        </div>
+        </div>
+        <div class="ground">
+          <div class="ground-grass"></div>
+          <div class="ground-soil"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2025</p>
+    </footer>
+    <script>
+      (function () {
+        var lines = ['Google Cloud Platform', 'PHP', 'Javascript', 'Laravel', 'MySQL', 'HTML', 'CSS'];
+        var el = document.getElementById('neon-text');
+        var lineIndex = 0;
+        var charIndex = 0;
+        var isDeleting = false;
+        var typeMs = 90;
+        var deleteMs = 50;
+        var pauseAfterType = 1800;
+        var pauseAfterDelete = 600;
+
+        function tick() {
+          var line = lines[lineIndex];
+          if (isDeleting) {
+            el.textContent = line.slice(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+              isDeleting = false;
+              lineIndex = (lineIndex + 1) % lines.length;
+              setTimeout(tick, pauseAfterDelete);
+              return;
+            }
+            setTimeout(tick, deleteMs);
+            return;
+          }
+          el.textContent = line.slice(0, charIndex);
+          charIndex++;
+          if (charIndex > line.length) {
+            isDeleting = true;
+            setTimeout(tick, pauseAfterType);
+            return;
+          }
+          setTimeout(tick, typeMs);
+        }
+        setTimeout(tick, 400);
+      })();
+    </script>
   </body>
 </html>
